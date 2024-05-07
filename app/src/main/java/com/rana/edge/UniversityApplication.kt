@@ -1,8 +1,6 @@
-package com.rana.edge.presentation
+package com.rana.edge
 
 import android.app.Application
-import androidx.room.Room
-import com.rana.edge.data.local.db.UniversityDatabase
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp

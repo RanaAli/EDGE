@@ -1,4 +1,4 @@
-package com.rana.edge.data.remote.repository
+package com.rana.edge.data.repository
 
 import android.util.Log
 import com.rana.edge.data.local.UniversityEntity

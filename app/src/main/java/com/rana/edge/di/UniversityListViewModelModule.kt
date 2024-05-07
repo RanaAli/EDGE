@@ -1,6 +1,7 @@
-package com.rana.edge.presentation
+package com.rana.edge.di
 
-import com.rana.edge.data.remote.repository.UniversityRepository
+import com.rana.edge.data.repository.UniversityRepository
+import com.rana.edge.presentation.ListViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.rana.edge.presentation
+package com.rana.edge.di
 
 import android.content.Context
 import androidx.room.Room
@@ -6,8 +6,8 @@ import com.rana.edge.data.local.datastore.UniversityLocalDatastore
 import com.rana.edge.data.local.db.UniversityDatabase
 import com.rana.edge.data.remote.api.ApiUrls
 import com.rana.edge.data.remote.api.UniversityApi
-import com.rana.edge.data.remote.repository.UniversityRepository
-import com.rana.edge.data.remote.repository.UniversityRepositoryImpl
+import com.rana.edge.data.repository.UniversityRepository
+import com.rana.edge.data.repository.UniversityRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

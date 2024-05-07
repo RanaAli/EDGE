@@ -1,4 +1,4 @@
-package com.rana.edge.data.remote.repository
+package com.rana.edge.data.repository
 
 import com.rana.edge.data.local.UniversityEntity
 import com.rana.edge.data.remote.response.UniversityResponse

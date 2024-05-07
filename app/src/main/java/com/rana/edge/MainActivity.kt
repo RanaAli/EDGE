@@ -1,4 +1,4 @@
-package com.rana.edge.presentation
+package com.rana.edge
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
