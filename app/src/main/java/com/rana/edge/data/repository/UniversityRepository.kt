@@ -4,5 +4,5 @@ import com.rana.edge.data.local.UniversityEntity
 
 interface UniversityRepository {
 
-    suspend fun getUniversities(): List<UniversityEntity>
+    suspend fun getUniversities(): Result
 }

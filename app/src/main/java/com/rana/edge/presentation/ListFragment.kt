@@ -5,10 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.rana.edge.data.local.UniversityEntity
 import com.rana.edge.databinding.FragListBinding
+import com.rana.edge.presentation.ListFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,12 +25,13 @@ class ListFragment : Fragment() {
 
     private val binding get() = _binding!!
 
-    // This property is only valid between onCreateView and onDestroyView.
-//    private val viewModel: ListViewModel by activityViewModels {
-//        UniversityListViewModelFactory(
-//            (requireActivity().application as UniversityApplication).universityRepository
-//        )
-//    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setFragmentResultListener("requestKey") { requestKey, bundle ->
+            viewModel.getUniversities()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,18 +56,25 @@ class ListFragment : Fragment() {
 
             loadingIndicator.visibility = View.VISIBLE
 
-            viewModel.getUniversities()
             // Set up the SwipeRefreshLayout
             swipeRefreshLayout.setOnRefreshListener {
                 Log.d("List Fragment", "pull to refresh called")
                 viewModel.getUniversities()
             }
 
-
             viewModel.universities.observe(viewLifecycleOwner) { universities ->
+                recyclerView.adapter = MyAdapter(universities, ::goToDetails)
                 swipeRefreshLayout.isRefreshing = false
-                recyclerView.adapter = MyAdapter(universities)
                 loadingIndicator.visibility = View.GONE
+            }
+
+            viewModel.error.observe(viewLifecycleOwner) {
+                loadingIndicator.visibility = View.GONE
+                swipeRefreshLayout.isRefreshing = false
+                if (it.isNotBlank()) {
+                    Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                    viewModel.errorShown()
+                }
             }
         }
     }
@@ -69,5 +82,13 @@ class ListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun goToDetails(universityEntity: UniversityEntity) {
+        findNavController().navigate(
+            ListFragmentDirections.actionListFragmentToUniversityDetailsFragment(
+                universityEntity
+            )
+        )
     }
 }

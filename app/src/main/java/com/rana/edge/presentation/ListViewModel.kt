@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.rana.edge.data.local.UniversityEntity
+import com.rana.edge.data.repository.Result
 import com.rana.edge.data.repository.UniversityRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,9 +19,25 @@ class ListViewModel @Inject constructor(
     private val _universities = MutableLiveData<List<UniversityEntity>>()
     val universities: LiveData<List<UniversityEntity>> = _universities
 
+    private val _error = MutableLiveData<String>()
+    val error: LiveData<String> = _error
+
+    init {
+        getUniversities()
+    }
+
     fun getUniversities() {
         viewModelScope.launch {
-            _universities.value = universityRepository.getUniversities()
+
+            when (val result = universityRepository.getUniversities()) {
+                is Result.Error -> _error.value = "There was an error"
+                is Result.Success -> _universities.value = result.data
+            }
+
         }
+    }
+
+    fun errorShown(){
+        _error.value = ""
     }
 }

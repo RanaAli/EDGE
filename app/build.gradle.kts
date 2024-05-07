@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger)
+    alias(libs.plugins.parcelize)
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -66,6 +68,9 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.logging.interceptor)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+//    implementation(libs.androidx.navigation.safe.args.gradle.plugin)
     //noinspection KaptUsageInsteadOfKsp
     kapt(libs.androidx.room.compiler)
 
