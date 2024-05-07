@@ -38,9 +38,6 @@ class ListFragment : Fragment() {
         _binding?.apply {
             // Set up the RecyclerView
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
-
         }
 
 
@@ -50,6 +47,8 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
+
+            loadingIndicator.visibility = View.VISIBLE
 
             viewModel.getUniversities()
             // Set up the SwipeRefreshLayout
@@ -62,6 +61,7 @@ class ListFragment : Fragment() {
             viewModel.universities.observe(viewLifecycleOwner) { universities ->
                 swipeRefreshLayout.isRefreshing = false
                 recyclerView.adapter = MyAdapter(universities)
+                loadingIndicator.visibility = View.GONE
             }
         }
     }
