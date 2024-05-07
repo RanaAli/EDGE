@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "EDGE"
 include(":app")
+include(":details")
