@@ -13,19 +13,19 @@ import com.rana.model.UniversityEntity
 interface UniversityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUniversities(universities: List<com.rana.model.UniversityEntity>)
+    suspend fun insertUniversities(universities: List<UniversityEntity>)
 
     @Query("SELECT * FROM universities")
-    suspend fun getAllUniversities(): List<com.rana.model.UniversityEntity>
+    suspend fun getAllUniversities(): List<UniversityEntity>
 
     @Query("SELECT * FROM universities WHERE universityId = :universityId")
-    suspend fun getUniversity(universityId: Int): com.rana.model.UniversityEntity?
+    suspend fun getUniversity(universityId: Int): UniversityEntity?
 
     @Update
-    suspend fun updateUniversity(university: com.rana.model.UniversityEntity)
+    suspend fun updateUniversity(university: UniversityEntity)
 
     @Delete
-    suspend fun deleteUniversity(university: com.rana.model.UniversityEntity)
+    suspend fun deleteUniversity(university: UniversityEntity)
 
     @Query("DELETE FROM universities")
     suspend fun deleteAllUniversities()

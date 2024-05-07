@@ -11,8 +11,8 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rana.model.UniversityEntity
 import com.rana.edge.databinding.FragListBinding
+import com.rana.model.UniversityEntity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,7 +27,7 @@ class ListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setFragmentResultListener("requestKey") { requestKey, bundle ->
+        setFragmentResultListener("requestKey") { _, _ ->
             viewModel.getUniversities()
         }
     }
@@ -83,7 +83,7 @@ class ListFragment : Fragment() {
         _binding = null
     }
 
-    private fun goToDetails(universityEntity: com.rana.model.UniversityEntity) {
+    private fun goToDetails(universityEntity: UniversityEntity) {
         findNavController().navigate(
             ListFragmentDirections.actionListFragmentToUniversityDetailsFragment(
                 universityEntity

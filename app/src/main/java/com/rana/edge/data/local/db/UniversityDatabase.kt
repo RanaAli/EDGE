@@ -2,11 +2,11 @@ package com.rana.edge.data.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.rana.model.UniversityEntity
 import com.rana.edge.data.local.dao.UniversityDao
+import com.rana.model.UniversityEntity
 
 @Database(
-    entities = [com.rana.model.UniversityEntity::class],
+    entities = [UniversityEntity::class],
     version = 1,
     exportSchema = false
 )

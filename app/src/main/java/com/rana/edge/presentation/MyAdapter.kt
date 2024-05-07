@@ -3,12 +3,12 @@ package com.rana.edge.presentation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.rana.model.UniversityEntity
 import com.rana.edge.databinding.ListItemBinding
+import com.rana.model.UniversityEntity
 
 class MyAdapter(
-    private val universities: List<com.rana.model.UniversityEntity>,
-    private val onClick: (com.rana.model.UniversityEntity) -> Unit
+    private val universities: List<UniversityEntity>,
+    private val onClick: (UniversityEntity) -> Unit
 ) :
     RecyclerView.Adapter<MyAdapter.UniversityViewHolder>() {
 
@@ -30,7 +30,7 @@ class MyAdapter(
     class UniversityViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(entity: com.rana.model.UniversityEntity, onClick: (com.rana.model.UniversityEntity) -> Unit) {
+        fun bind(entity: UniversityEntity, onClick: (UniversityEntity) -> Unit) {
             with(binding) {
                 university = entity
                 rootLayout.setOnClickListener { onClick.invoke(entity) }

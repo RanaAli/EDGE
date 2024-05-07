@@ -8,14 +8,4 @@ class UniversityApplication : Application() {
 
 //    lateinit var appComponent: AppComponent
 
-    override fun onCreate() {
-        super.onCreate()
-
-//        val universityDatabase: UniversityDatabase = Room.databaseBuilder(
-//            applicationContext,
-//            UniversityDatabase::class.java,
-//            "university_database"
-//        )
-//            .build()
-    }
 }
