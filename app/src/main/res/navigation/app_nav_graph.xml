@@ -15,11 +15,11 @@
     </fragment>
     <fragment
         android:id="@+id/universityDetailsFragment"
-        android:name="com.rana.edge.presentation.UniversityDetailsFragment"
+        android:name="com.rana.details.UniversityDetailsFragment"
         android:label="UniversityDetailsFragment" >
         <argument
             android:name="data"
-            app:argType="com.rana.edge.data.local.UniversityEntity"
+            app:argType="com.rana.model.UniversityEntity"
             app:nullable="true" />
     </fragment>
 </navigation>

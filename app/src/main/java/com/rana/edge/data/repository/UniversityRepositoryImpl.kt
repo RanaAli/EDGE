@@ -1,7 +1,6 @@
 package com.rana.edge.data.repository
 
 import android.util.Log
-import com.rana.edge.data.local.UniversityEntity
 import com.rana.edge.data.local.datastore.UniversityLocalDatastore
 import com.rana.edge.data.remote.api.UniversityApi
 import com.rana.edge.data.remote.response.UniversityResponse
@@ -25,15 +24,15 @@ class UniversityRepositoryImpl(
                     return Result.Success(data)
                 }
             }
-
-            // Check if universities are available in the local datastore.
-            val localUniversities = universityLocalDatastore.getUniversities()
-            if (localUniversities.isNotEmpty()) {
-                Log.e("UniversityRepository", "loaded from local")
-                return Result.Success(localUniversities)
-            }
         } catch (_: Exception) {
 
+        }
+
+        // Check if universities are available in the local datastore.
+        val localUniversities = universityLocalDatastore.getUniversities()
+        if (localUniversities.isNotEmpty()) {
+            Log.e("UniversityRepository", "loaded from local")
+            return Result.Success(localUniversities)
         }
 
         return Result.Error

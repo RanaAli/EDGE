@@ -1,24 +1,19 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.dagger)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.parcelize)
-    id("androidx.navigation.safeargs")
 }
 
 android {
-    namespace = "com.rana.edge"
+    namespace = "com.rana.model"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.rana.edge"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -50,38 +45,14 @@ android {
 }
 
 dependencies {
-    implementation(project(":model"))
-    implementation(project(":details"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.recyclerview)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     kapt(libs.androidx.room.compiler)
-
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.logging.interceptor)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-
-    implementation(libs.hilt.android)
-    kapt(libs.dagger.hilt.compiler)
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.activity.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

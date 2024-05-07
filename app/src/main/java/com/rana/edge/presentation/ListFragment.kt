@@ -11,9 +11,8 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rana.edge.data.local.UniversityEntity
+import com.rana.model.UniversityEntity
 import com.rana.edge.databinding.FragListBinding
-import com.rana.edge.presentation.ListFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,7 +83,7 @@ class ListFragment : Fragment() {
         _binding = null
     }
 
-    private fun goToDetails(universityEntity: UniversityEntity) {
+    private fun goToDetails(universityEntity: com.rana.model.UniversityEntity) {
         findNavController().navigate(
             ListFragmentDirections.actionListFragmentToUniversityDetailsFragment(
                 universityEntity
